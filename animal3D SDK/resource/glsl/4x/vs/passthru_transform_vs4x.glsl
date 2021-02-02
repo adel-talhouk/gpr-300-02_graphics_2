@@ -29,7 +29,12 @@
 //		(hint: correct name is used in codebase)
 //	-> transform input position by MVP matrix, store as output
 
+//a is for attribute, unique for each vertex
 layout (location = 0) in vec4 aPosition;
+//attribute vec4 aPosition;	// :( olden days of GLSL1, dead now
+
+//Uniform is data from the cpu; scope: affects everything
+uniform mat4 uMVP;	//model-view-projection matrix
 
 flat out int vVertexID;
 flat out int vInstanceID;
@@ -37,7 +42,8 @@ flat out int vInstanceID;
 void main()
 {
 	// DUMMY OUTPUT: directly assign input position to output position
-	gl_Position = aPosition;
+	//gl_Position = aPosition;
+	gl_Position = uMVP * aPosition;	//RIGHT TO LEFT - INPUT TO OUTPUT
 
 	vVertexID = gl_VertexID;
 	vInstanceID = gl_InstanceID;

@@ -33,6 +33,14 @@
 
 layout (location = 0) in vec4 aPosition;
 
+//Texture coordinate
+layout (location = 8) in vec2 aTexcoord;	//uv
+
+//Varying
+//varying vec2 vTexcoord;	// old way :(
+out vec2 vTexcoord;
+
+//Flat means do not interpolate (because cannot interpolate between ints)
 flat out int vVertexID;
 flat out int vInstanceID;
 
@@ -40,6 +48,9 @@ void main()
 {
 	// DUMMY OUTPUT: directly assign input position to output position
 	gl_Position = aPosition;
+
+	//Assign attribute to varying
+	vTexcoord = aTexcoord;
 
 	vVertexID = gl_VertexID;
 	vInstanceID = gl_InstanceID;

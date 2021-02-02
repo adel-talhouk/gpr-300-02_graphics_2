@@ -31,6 +31,9 @@
 //	-> get color from sampler at texture coordinate
 //	-> assign color to output
 
+//Texture coord varying
+in vec2 vTexcoord;
+
 layout (location = 0) out vec4 rtFragColor;
 
 void main()
